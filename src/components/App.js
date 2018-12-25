@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
-import thunk from "redux-thunk";
+import reduxPromise from "redux-promise";
 
 import "bootstrap/dist/css/bootstrap.css";
 import Navbar from "./Navbar";
@@ -28,7 +28,11 @@ const logger = store => {
 const rootReducer = combineReducers({
   posts: postReducer
 });
-const store = createStore(rootReducer, {}, applyMiddleware(logger, thunk));
+const store = createStore(
+  rootReducer,
+  {},
+  applyMiddleware(logger, reduxPromise)
+);
 class App extends React.Component {
   render() {
     return (

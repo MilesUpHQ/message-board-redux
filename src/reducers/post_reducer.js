@@ -5,9 +5,11 @@ export const postReducer = (state = [], action) => {
     case "DELETE_POST":
       return state.filter(p => action.post !== p);
     case "LOAD_POSTS":
-      const posts = action.posts.map(post => post.title);
-      console.log("reducer", posts);
-      return [...state, ...posts];
+      console.log(action.posts.data);
+      let posts = action.posts.data.map(post => post.title);
+      // const posts = action.posts.map(post => post.title);
+
+      return [...state, posts];
     default:
       return state;
   }
