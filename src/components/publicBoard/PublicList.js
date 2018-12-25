@@ -1,11 +1,18 @@
 import React from "react";
+import { connect } from "react-redux";
+import * as actions from "../../actions/action";
 
 class PostList extends React.Component {
+  componentDidMount() {
+    this.props.fetchPosts();
+  }
+
   handleDelete = post => {
     this.props.deletePost(post);
   };
 
   render() {
+    console.log("Posts", this.props.posts.length);
     if (!this.props.posts.length > 0) {
       return "no items found";
     }
@@ -36,4 +43,13 @@ class PostList extends React.Component {
   }
 }
 
-export default PostList;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    posts: state.posts
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  actions
+)(PostList);

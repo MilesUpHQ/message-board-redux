@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+
+import * as actions from "../../actions/action";
 
 class PublicForm extends Component {
   state = {
@@ -11,14 +14,6 @@ class PublicForm extends Component {
     });
   };
 
-  handleSubmit = event => {
-    event.preventDefault();
-    this.props.addPost(this.state.inputText);
-    this.setState({
-      inputText: ""
-    });
-  };
-
   render() {
     return (
       <div>
@@ -27,7 +22,10 @@ class PublicForm extends Component {
           value={this.state.inputText}
           className="form-control"
         />
-        <button onClick={this.handleSubmit} className="btn btn-primary">
+        <button
+          onClick={() => this.props.addPost(this.state.inputText)}
+          className="btn btn-primary"
+        >
           Post
         </button>
       </div>
@@ -35,4 +33,7 @@ class PublicForm extends Component {
   }
 }
 
-export default PublicForm;
+export default connect(
+  null,
+  actions
+)(PublicForm);

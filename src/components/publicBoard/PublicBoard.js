@@ -1,30 +1,30 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import PublicList from "./PublicList";
 import PublicForm from "./PublicForm";
+import * as actions from "../../actions/action";
 
 class PublicBoard extends Component {
-  state = {
-    posts: []
-  };
-
   addPost = post => {
     this.setState({ posts: [...this.state.posts, post] });
   };
 
   deletePost = post => {
-    const updateArray = this.state.posts.filter(m => m !== post);
-    this.setState({ posts: updateArray });
+    this.props.deletePost(post);
   };
   render() {
     return (
       <div>
         <div>
           <PublicForm addPost={this.addPost} />
-          <PublicList posts={this.state.posts} deletePost={this.deletePost} />
+          <PublicList deletePost={this.deletePost} />
         </div>
       </div>
     );
   }
 }
 
-export default PublicBoard;
+export default connect(
+  null,
+  actions
+)(PublicBoard);
