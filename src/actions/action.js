@@ -13,6 +13,6 @@ export const deletePost = post => {
 // };
 
 export const fetchPosts = () => {
-  const promise = axios.get("http://jsonplaceholder.typicode.com/posts");
-  return { type: "LOAD_POSTS", posts: promise };
+  const response = axios.get("http://jsonplaceholder.typicode.com/posts");
+  return { type: "LOAD_POSTS", payload: response };
 };

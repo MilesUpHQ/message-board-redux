@@ -4,7 +4,7 @@ import * as actions from "../../actions/action";
 
 class PostList extends React.Component {
   componentDidMount() {
-    this.props.fetchPosts();
+    // this.props.fetchPosts();
   }
 
   handleDelete = post => {
