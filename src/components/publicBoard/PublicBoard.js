@@ -19,7 +19,7 @@ class PublicBoard extends Component {
     return (
       <div>
         <div>
-          <PublicForm addPost={this.addPost} />
+          <PublicForm />
           <PublicList posts={this.state.posts} deletePost={this.deletePost} />
         </div>
       </div>

@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+
+import * as actions from "../../actions/action";
 
 class PublicForm extends Component {
   state = {
@@ -35,4 +38,7 @@ class PublicForm extends Component {
   }
 }
 
-export default PublicForm;
+export default connect(
+  null,
+  actions
+)(PublicForm);

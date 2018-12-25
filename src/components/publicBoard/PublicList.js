@@ -1,5 +1,5 @@
 import React from "react";
-
+import { connect } from "react-redux";
 class PostList extends React.Component {
   handleDelete = post => {
     this.props.deletePost(post);
@@ -36,4 +36,9 @@ class PostList extends React.Component {
   }
 }
 
-export default PostList;
+const mapStateToProps = state => {
+  return {
+    posts: state.posts
+  };
+};
+export default connect(mapStateToProps)(PostList);
