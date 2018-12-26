@@ -1,6 +1,11 @@
 import React, { Component } from "react";
-
+import { connect } from "react-redux";
+import * as actions from "../../actions/action";
 class PrivateList extends Component {
+  componentDidMount() {
+    this.props.fetchPosts();
+  }
+
   handleDelete = msg => {
     this.props.deleteMessage(msg);
   };
@@ -8,15 +13,13 @@ class PrivateList extends Component {
   render() {
     return (
       <ul className="list-group">
-        {this.props.messages.map(msg => {
+        {this.props.messages.map((msg, index) => {
           return (
-            <div key={msg} className="card mt-1">
+            <div key={index} className="card mt-1">
               <div className="card-body">
-                <span className="ml-2" role="img" aria-label="">
-                  👍
-                </span>
-                <span className="mr-4 upvotes">1</span>
-                {msg}
+                <b>Title:</b> {msg.title}
+                <br />
+                <b>User Id:</b> {msg.userId}
                 <span
                   onClick={this.handleDelete.bind(this, msg)}
                   className="float-right"
@@ -32,4 +35,13 @@ class PrivateList extends Component {
   }
 }
 
-export default PrivateList;
+const mapStateToProps = state => {
+  return {
+    messages: state.posts
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  actions
+)(PrivateList);

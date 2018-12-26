@@ -14,13 +14,13 @@ class PostList extends React.Component {
       <ul className="list-group">
         {this.props.posts.map(post => {
           return (
-            <div key={post} className="card mt-1">
+            <div key={post.id} className="card mt-1">
               <div className="card-body">
                 <span className="ml-2" role="img" aria-label="">
                   👍
                 </span>
                 <span className="mr-4 upvotes">1</span>
-                {post}
+                {post.title}
                 <span
                   onClick={this.handleDelete.bind(this, post)}
                   className="float-right"

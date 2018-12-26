@@ -19,10 +19,7 @@ class PrivateMessage extends React.Component {
     return (
       <div>
         <PrivateForm addMessage={this.addMessage} />
-        <PrivateList
-          messages={this.state.messages}
-          deleteMessage={this.deleteMessage}
-        />
+        <PrivateList deleteMessage={this.deleteMessage} />
       </div>
     );
   }
