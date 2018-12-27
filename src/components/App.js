@@ -4,7 +4,6 @@ import "bootstrap/dist/css/bootstrap.css";
 import Navbar from "./Navbar";
 import PublicBoard from "./publicBoard/PublicBoard";
 import PrivateMessage from "./privateBoard/PrivateBoard";
-import Root from "../Root";
 
 class App extends React.Component {
   render() {

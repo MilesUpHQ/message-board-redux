@@ -21,14 +21,22 @@ const logger = store => next => action => {
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(
-  rootReducer,
-  {},
-  composeEnhancers(applyMiddleware(logger, reduxPromise, thunk))
-);
+const dummyState = {
+  posts: [{ id: 1, title: "Magesh" }, { id: 2, title: "Rajesh" }]
+};
 
 class Root extends Component {
   render() {
+    const initialState = this.props.initialState
+      ? this.props.initialState
+      : dummyState;
+
+    const store = createStore(
+      rootReducer,
+      initialState,
+      composeEnhancers(applyMiddleware(logger, reduxPromise, thunk))
+    );
+
     return (
       <Provider store={store}>
         <BrowserRouter>{this.props.children}</BrowserRouter>
